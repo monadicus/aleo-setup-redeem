@@ -1,8 +1,12 @@
 ## Aleo Setup Code Redeemer
 
-This website decrypts redemption codes for Aleo Setup Ceremony private keys.
+# [Visit Webpage Here](https://monadicus.github.io/aleo-setup-redeem/)
 
-A modified version of snarkVM 0.7.5 was used in order for webassembly to compile. The branch can be found [here](https://github.com/monadicus/snarkVM/tree/fix-setup-wasm-build)
+This website decrypts redemption codes for Aleo Setup Ceremony participants using either encrypted or cleartext Aleo private keys.
+
+A modified version of snarkVM 0.7.5 was used in order for WebAssembly to compile. The branch can be found [here](https://github.com/monadicus/snarkVM/tree/fix-setup-wasm-build)
+
+The version of this webpage available at [monadicus.github.io/aleo-setup-redeem](https://monadicus.github.io/aleo-setup-redeem/) is built from source using [github actions](https://github.com/monadicus/aleo-setup-redeem/actions/workflows/deploy-github-pages.yml) and the artifact can be downloaded from there.
 
 ### Run Website with Docker
 
@@ -14,7 +18,6 @@ A modified version of snarkVM 0.7.5 was used in order for webassembly to compile
 
 ### Build Manually
 
-1. Install rust
 1. Install [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/)
 1. `wasm-pack build --release --target web`
 1. Optionally host the static files (requires npm): `npx http-server`
