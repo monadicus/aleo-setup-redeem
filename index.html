@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aleo Setup Ceremony Redemption Tool</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.classless.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .hidden {
+        display: none;
+      }
+      input[readonly] {
+        opacity: 0.6;
+        cursor: copy;
+      }
+      label {
+        font-weight: bold;
+        transition: color 0.2s ease;
+      }
+      label:has(input[aria-invalid='true']) {
+        color: var(--pico-form-element-invalid-border-color);
+      }
+      label:has(input[aria-invalid='true']:focus) {
+        color: var(--pico-form-element-invalid-active-border-color);
+      }
+      label:has(input[aria-invalid='false']) {
+        color: var(--pico-form-element-valid-border-color);
+      }
+      label:has(input[aria-invalid='false']:focus) {
+        color: var(--pico-form-element-valid-active-border-color);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hidden" id="wasmWarning">
+      <article>
+        <header>
+          <h3>Unable to load Web Assembly</h3>
+        </header>
+        <p>
+          This page uses
+          <a href="https://webassembly.org/" rel="noopener noreferer"
+            >WebAssembly</a
+          >
+          to run Rust code in the browser. Your browser does not support
+          WebAssembly, or something prevented it from loading.
+        </p>
+      </article>
+    </main>
+    <header>
+      <h1>Aleo Setup Ceremony Redemption Tool</h1>
+      <p>
+        Decrypt a redemption code using your Aleo Setup Ceremony private key.
+        Always be careful inputting your private key into websites you do not
+        trust.
+      </p>
+    </header>
+    <main>
+      <section>
+        <h3>Setup Ceremony Private Key</h3>
+        <p>Decrypt a redemption code using your Setup ceremony private key.</p>
+        <form id="privateKeyForm">
+          <label for="pk_privateKey">
+            Setup Ceremony Private Key
+            <input
+              name="pk_privateKey"
+              autocomplete="off"
+              type="password"
+              placeholder="APrivateKey1..."
+              aria-label="Private Key"
+              aria-describedby="pkHelper"
+              required
+            />
+            <small id="pkHelper"></small>
+          </label>
+          <label for="pk_foundCode">
+            Decrypted Redemption Code
+            <input
+              readonly
+              name="pk_foundCode"
+              autocomplete="off"
+              type="text"
+              placeholder="Enter a private key to decrypt a redemption code..."
+              aria-label="Redemption Code"
+              aria-describedby="pkCodeHelper"
+            />
+            <small id="pkCodeHelper"></small>
+          </label>
+        </form>
+      </section>
+      <section>
+        <h3>Check with Encrypted Private Key</h3>
+        <p>Decrypt a redemption code using your Setup ceremony private key.</p>
+        <form id="encryptedForm">
+          <label for="enc_privateKey">
+            Encrypted Private Key
+            <input
+              name="enc_privateKey"
+              autocomplete="off"
+              type="text"
+              placeholder="6167652d656e6372797074... (Hexadecimal Encoded Key)"
+              aria-label="Encrypted Private Key"
+              aria-describedby="encHelper"
+              required
+            />
+          </label>
+          <label for="enc_phrase">
+            Decryption Phrase
+            <input
+              name="enc_phrase"
+              autocomplete="off"
+              type="password"
+              placeholder="ten-word-phrase-that-was-generated-during-aleo-setup-ceremony"
+              aria-label="Private Key Encryption Phrase"
+              aria-describedby="encHelper"
+              required
+            />
+            <small id="encHelper"></small>
+          </label>
+          <label for="enc_foundCode">
+            Decrypted Redemption Code
+            <input
+              readonly
+              name="enc_foundCode"
+              autocomplete="off"
+              type="text"
+              placeholder="Enter an encrypted private key to decrypt a redemption code..."
+              aria-label="Redemption Code"
+              aria-describedby="encCodeHelper"
+            />
+            <small id="encCodeHelper"></small>
+          </label>
+        </form>
+      </section>
+      <section>
+        <h2 id="selfhost">Self Host this Site</h2>
+        <p>
+          The source code for this website is available in the
+          <a
+            rel="noopener noreferer"
+            href="https://github.com/monadicus/aleo-setup-redeem"
+          >
+            monadicus/aleo-setup-redeem
+          </a>
+          repository. This website uses a modified version of snarkVM v0.7.5
+          available at
+          <a
+            rel="noopener noreferer"
+            href="https://github.com/monadicus/snarkVM/tree/fix-setup-wasm-build"
+          >
+            monadicus/snarkVM
+          </a>
+          in order for the code to build successfully.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <small>
+        <a
+          rel="noopener noreferer"
+          href="https://github.com/monadicus/aleo-setup-redeem"
+          >Source code</a
+        >
+        &bullet;
+        <a rel="noopener noreferer" href="https://aleo.org/">Aleo</a>
+        &bullet;
+        <a rel="noopener noreferer" href="https://github.com/Aleonet/snarkOS"
+          >snarkOS</a
+        >
+        &bullet; Built with <a href="https://picocss.com">Pico</a>
+      </small>
+    </footer>
+    <script type="module" src="./script.mjs"></script>
+  </body>
+</html>

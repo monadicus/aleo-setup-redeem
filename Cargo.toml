@@ -1,0 +1,27 @@
+[package]
+name = "aleo-setup-redeem"
+version = "0.0.0"
+edition = "2021"
+authors = ["Isaac H <gpg@reheatedcake.io>"]
+description = "Aleo Setup ceremony redemption code decryption website."
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+
+[dependencies]
+age = "0.7"
+getrandom = { version = "0.2", features = ["js"] }
+hex = "0.4"
+rand.version = "0.8.0"
+secrecy = "0.8"
+snarkvm-dpc = { git = "https://github.com/monadicus/snarkVM", branch = "fix-setup-wasm-build", default-features = false, features = [
+  "wasm",
+] }
+snarkvm-algorithms = { git = "https://github.com/monadicus/snarkVM", branch = "fix-setup-wasm-build", default-features = false, features = [
+  "wasm",
+] }
+wasm-bindgen = "0.2.84"
+
+[profile.release]
+opt-level = "s"
